@@ -34,3 +34,30 @@ const copyObj = (obj) => {
 
 console.log(copyObj(obj));
 console.log(obj);
+
+const testStr = "{()}";
+
+const isValid = (s) => {
+  const brackets = {
+    ")": "(",
+    "]": "[",
+    "}": "{",
+  };
+
+  const str = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (isClosedBracket(s[i])) {
+      if (brackets[s[i]] !== str.pop()) return false;
+    } else {
+      str.push(s[i]);
+    }
+  }
+  return str.length === 0;
+};
+
+const isClosedBracket = (ch) => {
+  return [")", "]", "}"].indexOf(ch) > -1;
+};
+
+console.log(testStr, isValid(testStr));
