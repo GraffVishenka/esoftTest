@@ -1,0 +1,36 @@
+const obj = {
+  name: {
+    firstName: "Maxim",
+    lastName: "Cherry",
+  },
+  address: {
+    number: 89123822099,
+    country: "Tumen",
+    pincode: 666666,
+  },
+  email: "cherry@gmail.com",
+  hobbies: ["reading", "watching", "programming"],
+};
+
+const copyObj = (obj) => {
+  const result = {};
+  if (
+    typeof obj !== "object" ||
+    typeof obj === undefined ||
+    obj === null ||
+    Array.isArray(obj) ||
+    typeof obj == "function"
+  ) {
+    return obj;
+  }
+
+  const keys = Object.keys(obj);
+
+  for (let key in keys) {
+    result[keys[key]] = copyObj(obj[keys[key]]);
+  }
+  return result;
+};
+
+console.log(copyObj(obj));
+console.log(obj);
